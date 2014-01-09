@@ -1,0 +1,21 @@
+/**
+ * Public ~ Default styles
+ */
+
+.has-wpur-box {
+	position: relative;
+	padding-left: 80px;
+	margin-bottom: 20px;
+	min-height: 105px;
+}
+
+	.has-wpur-box__cover {
+		position: absolute;
+		top: 0; left: 0;
+	}
+
+		.has-wpur-box__cover .wp-post-image { display: block; }
+
+	.has-wpur-box__txt { display: block; margin-bottom: 3px; }
+
+		.has-wpur-box__txt--title { font-weight: bold; }
