@@ -37,15 +37,18 @@ if( $release_query->have_posts() ) :
 			$term_list     = wp_get_post_terms( $post->ID, 'has_wpur_category' );
 			$category_name = $term_list[0]->name;
 		}
+		else{
+			$category_name = __( 'No category', 'wp-upcoming-releases' );
+		}
 
 		// Mount the view
 		$output = '
 			<div class="has-wpur-box">
 				<figure class="has-wpur-box__cover">' . $cover . '</figure>
 				<span class="has-wpur-box__txt has-wpur-box__txt--title">' . $release_title . '</span>
-				<span class="has-wpur-box__txt">' . $classification . '</span>
-				<span class="has-wpur-box__txt">' . $category_name . '</span>
-				<span class="has-wpur-box__txt">' . $release_date . '</span>
+				<span class="has-wpur-box__title">' . __( 'Age Rating', 'wp-upcoming-releases' ) . '</span> <span class="has-wpur-box__txt">' . $classification . '</span>
+				<span class="has-wpur-box__title">' . __( 'Category', 'wp-upcoming-releases' ) . '</span> <span class="has-wpur-box__txt">' . $category_name . '</span>
+				<span class="has-wpur-box__title">' . __( 'Release Date', 'wp-upcoming-releases' ) . '</span> <span class="has-wpur-box__txt">' . $release_date . '</span>
 			</div>
 		';
 
