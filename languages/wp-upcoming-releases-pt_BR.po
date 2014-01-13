@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Upcoming Releases 1.0.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-01-09 10:03-0300\n"
-"PO-Revision-Date: 2014-01-09 10:03-0300\n"
+"POT-Creation-Date: 2014-01-13 17:07-0300\n"
+"PO-Revision-Date: 2014-01-13 17:07-0300\n"
 "Last-Translator: Henrique Antonini Silvério <henrique-silverio@hotmail.com>\n"
 "Language-Team: Henrique Antonini Silvério <henrique-silverio@hotmail.com>\n"
 "Language: pt_BR\n"
@@ -85,14 +85,43 @@ msgstr "Exibe uma lista com os seus próximos lançamentos."
 msgid "Next Releases"
 msgstr "Próximos Lançamentos"
 
-#: admin/releases-widget.php:43
+#: admin/releases-widget.php:44
 msgid "Title:"
 msgstr "Título:"
 
-#: admin/releases-widget.php:54
+#: admin/releases-widget.php:55
 msgid "Number of releases to show:"
 msgstr "Número de Lançamentos a exibir:"
 
-#: public/releases-view.php:56
+#: admin/releases-widget.php:66
+msgid "Show item labels?"
+msgstr "Mostrar rótulos nos itens?"
+
+#: admin/releases-widget.php:75
+msgid "No"
+msgstr "Não"
+
+#: admin/releases-widget.php:85
+msgid "Yes"
+msgstr "Sim"
+
+#: public/releases-view.php:41
+msgid "No category"
+msgstr "Sem categoria"
+
+#: public/releases-view.php:60
+#, fuzzy
+msgid "Age Rating"
+msgstr "Classificação Indicativa"
+
+#: public/releases-view.php:62
+msgid "Category"
+msgstr "Categoria"
+
+#: public/releases-view.php:64
+msgid "Release Date"
+msgstr "Data de Lançamento"
+
+#: public/releases-view.php:74
 msgid "Not found releases."
 msgstr "Nenhum lançamento encontrado."

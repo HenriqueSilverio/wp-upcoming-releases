@@ -9,6 +9,7 @@ if( isset( $title ) ) { echo $before_title . $title . $after_title; }
  * WP Query
  */
 $show_releases = empty( $instance['show_releases'] ) ? 4 : (int) $instance['show_releases'];
+$show_labels   = empty( $instance['show_labels'] ) ? 0 : $instance['show_labels'];
 $query         = array( 'post_type' => 'has_releases', 'posts_per_page' => $show_releases );
 $release_query = new WP_Query( $query );
 
@@ -36,21 +37,35 @@ if( $release_query->have_posts() ) :
 		if( has_term( '', 'has_wpur_category' ) ) {
 			$term_list     = wp_get_post_terms( $post->ID, 'has_wpur_category' );
 			$category_name = $term_list[0]->name;
-		}
-		else{
+		} else {
 			$category_name = __( 'No category', 'wp-upcoming-releases' );
 		}
 
 		// Mount the view
-		$output = '
-			<div class="has-wpur-box">
-				<figure class="has-wpur-box__cover">' . $cover . '</figure>
-				<span class="has-wpur-box__txt has-wpur-box__txt--title">' . $release_title . '</span>
-				<span class="has-wpur-box__title">' . __( 'Age Rating', 'wp-upcoming-releases' ) . '</span> <span class="has-wpur-box__txt">' . $classification . '</span>
-				<span class="has-wpur-box__title">' . __( 'Category', 'wp-upcoming-releases' ) . '</span> <span class="has-wpur-box__txt">' . $category_name . '</span>
-				<span class="has-wpur-box__title">' . __( 'Release Date', 'wp-upcoming-releases' ) . '</span> <span class="has-wpur-box__txt">' . $release_date . '</span>
-			</div>
-		';
+		if( $show_labels == '0' ) { // Display items with labels
+			$output = '
+				<div class="has-wpur-box">
+					<figure class="has-wpur-box__cover">' . $cover . '</figure>
+					<span class="has-wpur-box__txt has-wpur-box__txt--title">' . $release_title . '</span>
+					<span class="has-wpur-box__txt">' . $classification . '</span>
+					<span class="has-wpur-box__txt">' . $category_name . '</span>
+					<span class="has-wpur-box__txt">' . $release_date . '</span>
+				</div>
+			';
+		} else { // Display items without labels
+			$output = '
+				<div class="has-wpur-box">
+					<figure class="has-wpur-box__cover">' . $cover . '</figure>
+					<span class="has-wpur-box__txt has-wpur-box__txt--title">' . $release_title . '</span>
+					<span class="has-wpur-box__title">' . __( 'Age Rating', 'wp-upcoming-releases' ) . '</span> 
+					<span class="has-wpur-box__txt">' . $classification . '</span>
+					<span class="has-wpur-box__title">' . __( 'Category', 'wp-upcoming-releases' ) . '</span> 
+					<span class="has-wpur-box__txt">' . $category_name . '</span>
+					<span class="has-wpur-box__title">' . __( 'Release Date', 'wp-upcoming-releases' ) . '</span> 
+					<span class="has-wpur-box__txt">' . $release_date . '</span>
+				</div>
+			';
+		}
 
 		// Display the view
 		echo $output;

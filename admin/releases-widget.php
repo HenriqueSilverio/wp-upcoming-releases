@@ -36,11 +36,12 @@ class has_wpur_widget extends WP_Widget {
 
 		$title         = $instance['title'];
 		$show_releases = $instance['show_releases'];
+		$show_labels   = ( $instance['show_labels'] ) ? $instance['show_labels'] : '0';
 	?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'show_releases' ); ?>">
-				<?php _e( 'Title:', 'wp-upcoming-releases' ); ?>
+				<strong><?php _e( 'Title:', 'wp-upcoming-releases' ); ?></strong>
 			</label>
 			<input type="text"
 				   class="widefat" 
@@ -51,7 +52,7 @@ class has_wpur_widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'show_releases' ); ?>">
-				<?php _e( 'Number of releases to show:', 'wp-upcoming-releases' ); ?>
+				<strong><?php _e( 'Number of releases to show:', 'wp-upcoming-releases' ); ?></strong>
 			</label>
 			<input type="text"
 				   size="2" 
@@ -59,6 +60,30 @@ class has_wpur_widget extends WP_Widget {
 				   name="<?php echo $this->get_field_name( 'show_releases' ); ?>"
 				   id="<?php echo $this->get_field_id( 'show_releases' ); ?>" 
 				   value="<?php echo esc_attr( $show_releases ); ?>">
+		</p>
+
+		<p>
+			<strong><?php _e( 'Show item labels?', 'wp-upcoming-releases' ); ?></strong> <br>
+			
+			<input type="radio"
+				   name="<?php echo $this->get_field_name( 'show_labels' ); ?>"
+				   id="<?php echo $this->get_field_id( 'show_labels_no' ); ?>" 
+				   value="0"
+				   <?php checked( '0', $show_labels ); ?>
+				   data-val="<?php echo $show_labels; ?>">
+			<label for="<?php echo $this->get_field_id( 'show_labels_no' ); ?>">
+				<?php _e( 'No', 'wp-upcoming-releases' ) ?>
+			</label> <br>
+
+			<input type="radio"
+				   name="<?php echo $this->get_field_name( 'show_labels' ); ?>"
+				   id="<?php echo $this->get_field_id( 'show_labels_yes' ); ?>" 
+				   value="1"
+				   <?php checked( '1', $show_labels ); ?>
+				   data-val="<?php echo $show_labels; ?>"> 
+			<label for="<?php echo $this->get_field_id( 'show_labels_yes' ); ?>">
+				<?php _e( 'Yes', 'wp-upcoming-releases' ) ?>
+			</label>
 		</p>
 
 	<?php
@@ -77,12 +102,19 @@ class has_wpur_widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance =	$old_instance;
 
-		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['title']       = strip_tags( $new_instance['title'] );
+		$instance['show_labels'] = esc_attr( $new_instance['show_labels'] );
 
 		if( is_numeric( $new_instance['show_releases'] ) && $new_instance['show_releases'] <= 10 ) {
 			$instance['show_releases'] = strip_tags( $new_instance['show_releases'] );
 		} else {
 			$instance['show_releases'] = 0;
+		}
+
+		if( isset( $new_instance['show_labels'] ) && ( $new_instance['show_labels'] == '0' || $new_instance['show_labels'] == '1') ) {
+			$instance['show_labels'] = esc_attr( $new_instance['show_labels'] );
+		} else {
+			$instance['show_labels'] = 0;	
 		}
 
 		return $instance;
