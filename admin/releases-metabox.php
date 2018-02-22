@@ -16,10 +16,10 @@ function has_wpur_register_metabox() {
 /**
  * Display
  */
-function has_wpur_metabox_render( $post ) { 
+function has_wpur_metabox_render( $post ) {
 	$values         = get_post_custom( $post->ID );
-	$classification = ( $values['has_wpur_classification'] ) ? esc_attr( $values['has_wpur_classification'][0] ) : '';
-	$release_date   = ( $values['has_wpur_release_date']   ) ? esc_attr( $values['has_wpur_release_date'][0]   ) : '';
+	$classification = isset( $values['has_wpur_classification'] ) ? esc_attr( $values['has_wpur_classification'][0] ) : '';
+	$release_date   = isset( $values['has_wpur_release_date'] )   ? esc_attr( $values['has_wpur_release_date'][0]   ) : '';
 
 	wp_nonce_field( 'has_wpur_metabox_nonce', 'has_wpur_nonce' );
 ?>
