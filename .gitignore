@@ -1,5 +1,8 @@
+# Code Editors
+*.sublime-*
+
+# OS X metadata
 .DS_Store
-desktop.ini
-src/*
-build/*
-style.css
+
+# Windows metadata
+Thumbs.db
