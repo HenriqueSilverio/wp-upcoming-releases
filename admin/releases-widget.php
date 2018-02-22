@@ -36,7 +36,7 @@ class has_wpur_widget extends WP_Widget {
 
 		$title         = $instance['title'];
 		$show_releases = $instance['show_releases'];
-		$show_labels   = ( $instance['show_labels'] ) ? $instance['show_labels'] : '0';
+		$show_labels   = isset($instance['show_labels']) ? $instance['show_labels'] : '0';
 	?>
 
 		<p>
@@ -44,9 +44,9 @@ class has_wpur_widget extends WP_Widget {
 				<strong><?php _e( 'Title:', 'wp-upcoming-releases' ); ?></strong>
 			</label>
 			<input type="text"
-				   class="widefat" 
+				   class="widefat"
 				   name="<?php echo $this->get_field_name( 'title' ); ?>"
-				   id="<?php echo $this->get_field_id( 'show_releases' ); ?>" 
+				   id="<?php echo $this->get_field_id( 'show_releases' ); ?>"
 				   value="<?php echo esc_attr( $title ); ?>">
 		</p>
 
@@ -55,19 +55,19 @@ class has_wpur_widget extends WP_Widget {
 				<strong><?php _e( 'Number of releases to show:', 'wp-upcoming-releases' ); ?></strong>
 			</label>
 			<input type="text"
-				   size="2" 
+				   size="2"
 				   maxlength="2"
 				   name="<?php echo $this->get_field_name( 'show_releases' ); ?>"
-				   id="<?php echo $this->get_field_id( 'show_releases' ); ?>" 
+				   id="<?php echo $this->get_field_id( 'show_releases' ); ?>"
 				   value="<?php echo esc_attr( $show_releases ); ?>">
 		</p>
 
 		<p>
 			<strong><?php _e( 'Show item labels?', 'wp-upcoming-releases' ); ?></strong> <br>
-			
+
 			<input type="radio"
 				   name="<?php echo $this->get_field_name( 'show_labels' ); ?>"
-				   id="<?php echo $this->get_field_id( 'show_labels_no' ); ?>" 
+				   id="<?php echo $this->get_field_id( 'show_labels_no' ); ?>"
 				   value="0"
 				   <?php checked( '0', $show_labels ); ?>
 				   data-val="<?php echo $show_labels; ?>">
@@ -77,10 +77,10 @@ class has_wpur_widget extends WP_Widget {
 
 			<input type="radio"
 				   name="<?php echo $this->get_field_name( 'show_labels' ); ?>"
-				   id="<?php echo $this->get_field_id( 'show_labels_yes' ); ?>" 
+				   id="<?php echo $this->get_field_id( 'show_labels_yes' ); ?>"
 				   value="1"
 				   <?php checked( '1', $show_labels ); ?>
-				   data-val="<?php echo $show_labels; ?>"> 
+				   data-val="<?php echo $show_labels; ?>">
 			<label for="<?php echo $this->get_field_id( 'show_labels_yes' ); ?>">
 				<?php _e( 'Yes', 'wp-upcoming-releases' ) ?>
 			</label>
@@ -114,7 +114,7 @@ class has_wpur_widget extends WP_Widget {
 		if( isset( $new_instance['show_labels'] ) && ( $new_instance['show_labels'] == '0' || $new_instance['show_labels'] == '1') ) {
 			$instance['show_labels'] = esc_attr( $new_instance['show_labels'] );
 		} else {
-			$instance['show_labels'] = 0;	
+			$instance['show_labels'] = 0;
 		}
 
 		return $instance;
@@ -130,7 +130,7 @@ class has_wpur_widget extends WP_Widget {
 	 */
 	function widget( $args, $instance ) {
 		extract( $args );
-		
+
 		echo $before_widget;
 			require_once( WPUR_PATH . 'public/releases-view.php' );
 		echo $after_widget;
