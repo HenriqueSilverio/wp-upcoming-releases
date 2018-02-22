@@ -14,7 +14,7 @@ class has_wpur_widget extends WP_Widget {
 
 		parent::__construct(
 			'has_wpur_widget',
-			__( 'Next Releases', 'wp-upcoming-releases' ),
+			__( 'Upcoming Releases', 'wp-upcoming-releases' ),
 			$widget_args
 		);
 	}
@@ -28,7 +28,7 @@ class has_wpur_widget extends WP_Widget {
 	 */
 	function form( $instance ) {
 		$defaults = array(
-			'title'         => __( 'Next Releases', 'wp-upcoming-releases' ),
+			'title'         => __( 'Upcoming Releases', 'wp-upcoming-releases' ),
 			'show_releases' => 4
 		);
 
