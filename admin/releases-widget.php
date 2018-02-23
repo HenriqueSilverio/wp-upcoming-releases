@@ -125,15 +125,46 @@ class has_wpur_widget extends WP_Widget {
 	 *
 	 * @see WP_Widget::widget()
 	 *
-	 * @param array $args     Widget arguments.
-	 * @param array $instance Saved values from database.
+	 * @param array $arguments	Widget arguments.
+	 * @param array $instance 	Saved values from database.
 	 */
-	function widget( $args, $instance ) {
-		extract( $args );
+	function widget( $arguments, $instance ) {
+		/**
+		 * Widget Title
+		 */
+		$before_title = empty($arguments['before_title']) ? '' : $arguments['before_title'];
+		$after_title  = empty($arguments['after_title'])  ? '' : $arguments['after_title'];
+		$title        = apply_filters( 'widget_title', $instance['title'] );
+		$title        = empty( $title ) ? '' : $title;
+		$title        = $before_title . $title . $after_title;
 
-		echo $before_widget;
-			require_once( WPUR_PATH . 'public/releases-view.php' );
-		echo $after_widget;
+		/**
+		 * Widget Options
+		 */
+		$perPage    = empty( $instance['show_releases'] ) ? 4 : (int) $instance['show_releases'];
+		$showLabels = empty( $instance['show_labels'] ) ? 0 : (int) $instance['show_labels'];
+
+		/**
+		 * WP Query
+		 */
+		$criteria = array( 'post_type' => 'has_releases', 'posts_per_page' => $perPage );
+		$storage  = new WP_Query();
+		$releases = $storage->query($criteria);
+
+		/**
+		 * Template data
+		 */
+		$data = array(
+			'title'      => $title,
+			'releases'   => $releases,
+			'showLabels' => $showLabels
+		);
+
+		echo empty( $arguments['before_widget'] ) ? '' : $arguments['before_widget'];
+
+		require_once WPUR_PATH . 'templates/releases-list.php';
+
+		echo empty( $arguments['after_widget'] ) ? '' : $arguments['after_widget'];
 	}
 } // class has_wpur_widget
 
