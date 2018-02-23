@@ -15,17 +15,17 @@
  * License:     GPL-2.0+
  *
  * Copyright 2013 Henrique Antonini Silvério <contato@henriquesilverio.com>
- *	
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
- *	
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *	
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
@@ -60,7 +60,7 @@ function has_wpur_register_styles() {
 
 	wp_register_style(
 		'has_wpur_public',
-		plugins_url( 'public/css/public.css', __FILE__ )
+		plugins_url( 'assets/css/public.css', __FILE__ )
 	);
 }
 
@@ -73,10 +73,10 @@ add_action( 'wp_enqueue_scripts', 'has_wpur_register_styles' );
 function has_wpur_enqueue_admin_styles( $hook ) {
 	global $post;
 	$has_post_type = 'has_releases';
-	
+
 	if( $hook == 'post-new.php' || $hook == 'post.php' ) {
 		if( 'has_releases' == $post->post_type ) {
-			wp_enqueue_style( 
+			wp_enqueue_style(
 				'has_wpur_admin',
 				plugins_url( 'admin/css/admin.css', __FILE__ )
 			);
