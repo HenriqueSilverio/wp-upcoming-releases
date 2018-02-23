@@ -6,7 +6,7 @@
  *
  * Available variables:
  *
- *     array $data
+ *     array $data Attributes to use in template.
  *
  * @see has_wpur_widget::form()
  */

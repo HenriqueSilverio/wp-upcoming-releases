@@ -61,7 +61,7 @@ class has_wpur_widget extends WP_Widget {
             )
         );
 
-        require WPUR_PATH . 'templates/widget-form.php';
+        require WPUR_PATH . '/templates/widget-form.php';
     }
 
     /**
@@ -134,7 +134,7 @@ class has_wpur_widget extends WP_Widget {
 
         echo empty( $arguments['before_widget'] ) ? '' : $arguments['before_widget'];
 
-        require_once WPUR_PATH . 'templates/releases-list.php';
+        require_once WPUR_PATH . '/templates/releases-list.php';
 
         echo empty( $arguments['after_widget'] ) ? '' : $arguments['after_widget'];
     }

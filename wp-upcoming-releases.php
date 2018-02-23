@@ -1,20 +1,17 @@
 <?php
-
 /**
- * @package   WP_Upcoming_Releases
- * @author    Henrique Antonini Silvério <contato@henriquesilverio.com>
- * @license   GPL-2.0+
- * @copyright 2013 Henrique Antonini Silvério
- *
  * Plugin Name: WP Upcoming Releases
  * Plugin URI:  https://github.com/HenriqueSilverio/wp-upcoming-releases
- * Description: Display a widget with a list of upcoming releases of games, books, films, music albums and what you want. Easy management with custom post types.
- * Version:     1.0.0
+ * Description: Widget to show a list of upcoming releases: movies, games, musics, or any other thing your creative ideas needs. Easy management with custom post types and categories.
+ * Version:     1.2.0
  * Author:      Henrique Antonini Silvério
- * Author URI:  http://henriquesilverio.com/
- * License:     GPL-2.0+
+ * Author URI:  https://henriquesilverio.github.io
+ * License:     GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: wp-upcoming-releases
+ * Domain Path: /languages
  *
- * Copyright 2013 Henrique Antonini Silvério <contato@henriquesilverio.com>
+ * Copyright (C) 2014 ~ 2018 Henrique Antonini Silvério
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,110 +25,113 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( false === defined( 'ABSPATH' ) ) {
+    header('Status: 403 Forbidden');
+    header('HTTP/1.1 403 Forbidden');
+    die();
 }
 
 // Define some util globals
-if( ! defined( 'WPUR_PATH' ) ) {
-	define( 'WPUR_PATH', plugin_dir_path( __FILE__ ) );
+if( false === defined( 'WPUR_PATH' ) ) {
+    define( 'WPUR_PATH', dirname( __FILE__ ) );
 }
 
 // Text domain
-load_plugin_textdomain( 'wp-upcoming-releases', false, 'wp-upcoming-releases/languages' );
-
-
-/*----------------------------------------------------------------------------
- Styles and Scripts
-----------------------------------------------------------------------------*/
-
-/**
- * Register plugin styles
- */
-function has_wpur_register_styles() {
-	wp_register_style(
-		'has_wpur_admin',
-		plugins_url( 'admin/css/admin.css', __FILE__ )
-	);
-
-	wp_register_style(
-		'has_wpur_public',
-		plugins_url( 'assets/css/public.css', __FILE__ )
-	);
+function loadUpcomingReleasesDomain () {
+    load_plugin_textdomain( 'wp-upcoming-releases', false, WPUR_PATH . '/languages' );
 }
 
-add_action( 'wp_enqueue_scripts', 'has_wpur_register_styles' );
+add_action( 'init', 'loadUpcomingReleasesDomain' );
 
+/*------------------------------------------------------------------------------
+ Styles and Scripts
+------------------------------------------------------------------------------*/
 
 /**
  * Enqueue admin styles
  */
 function has_wpur_enqueue_admin_styles( $hook ) {
-	global $post;
-	$has_post_type = 'has_releases';
+    if ( false === in_array( $hook, array( 'post.php', 'post-new.php' ) ) ) {
+        return;
+    }
 
-	if( $hook == 'post-new.php' || $hook == 'post.php' ) {
-		if( 'has_releases' == $post->post_type ) {
-			wp_enqueue_style(
-				'has_wpur_admin',
-				plugins_url( 'admin/css/admin.css', __FILE__ )
-			);
-		}
-	}
+    $screen = get_current_screen();
+
+    if ( false === ( is_object( $screen ) && 'has_releases' === $screen->post_type ) ) {
+        return;
+    }
+
+    wp_enqueue_style(
+        'has-wpur-admin',
+        plugins_url( 'assets/css/admin.css', __FILE__ ),
+        array(),
+        null,
+        'all'
+    );
 }
 
 add_action( 'admin_enqueue_scripts', 'has_wpur_enqueue_admin_styles', 10, 1 );
-
 
 /**
  * Enqueue public styles
  */
 function has_wpur_enqueue_public_styles() {
-	wp_enqueue_style( 'has_wpur_public' );
+    wp_enqueue_style(
+        'has-wpur-public',
+        plugins_url( 'assets/css/public.css', __FILE__ ),
+        array(),
+        null,
+        'all'
+    );
 }
 
 add_action( 'wp_enqueue_scripts', 'has_wpur_enqueue_public_styles' );
 
-
-/*----------------------------------------------------------------------------
+/*------------------------------------------------------------------------------
  Post type, Metabox, Taxonomy, Widget
-----------------------------------------------------------------------------*/
+------------------------------------------------------------------------------*/
 
 /**
  * Custom Post Type
  */
-require_once( plugin_dir_path( __FILE__ ) . '/admin/releases-cpt.php' );
-
+require_once WPUR_PATH . '/admin/releases-cpt.php';
 
 /**
  * Metabox
  */
-require_once( plugin_dir_path( __FILE__ ) . '/admin/releases-metabox.php' );
-
+require_once WPUR_PATH . '/admin/releases-metabox.php';
 
 /**
  * Taxonomy
  */
-require_once( plugin_dir_path( __FILE__ ) . '/admin/releases-taxonomy.php' );
-
+require_once WPUR_PATH . '/admin/releases-taxonomy.php';
 
 /**
  * Widget
  */
-require_once( plugin_dir_path( __FILE__ ) . '/admin/releases-widget.php' );
-
+require_once WPUR_PATH . '/admin/releases-widget.php';
 
 /**
- * Image size
+ * Add Thumbnails support and custom Image size
  */
-if( function_exists( 'add_theme_support' ) ) {
-	add_theme_support( 'post-thumbnails' );
+function addUpcomingReleasesThumbnail () {
+    add_theme_support( 'post-thumbnails', array( 'has_releases' ) );
+    add_image_size( 'has_wpur_cover', 90, 120 );
 }
 
-if( function_exists( 'add_image_size' ) ) {
-	add_image_size( 'has_wpur_cover', 77, 105 );
+add_action( 'after_setup_theme', 'addUpcomingReleasesThumbnail' );
+
+/**
+ * Add Upcoming Releases Cover selectable from Media Library dropdown
+ */
+function upcomingReleasesImageSizeName( $sizes ) {
+    return array_merge( $sizes, array(
+        'has_wpur_cover' => __( 'Upcoming Release Cover', 'wp-upcoming-releases' ),
+    ) );
 }
+
+add_filter( 'image_size_names_choose', 'upcomingReleasesImageSizeName' );

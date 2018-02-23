@@ -46,7 +46,7 @@
 
             <li class="has-wpur-list__item">
 
-                <?php require WPUR_PATH . 'templates/partials/release-item.php'; ?>
+                <?php require WPUR_PATH . '/templates/partials/release-item.php'; ?>
 
             </li>
 
