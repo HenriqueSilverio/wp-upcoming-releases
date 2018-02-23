@@ -20,7 +20,9 @@ class has_wpur_widget extends WP_Widget {
     }
 
     /**
-     * Back-end widget form.
+     * Back-End widget form
+     *
+     * A form with configurable options to control how widget is displayed.
      *
      * @see WP_Widget::form()
      *
@@ -34,59 +36,32 @@ class has_wpur_widget extends WP_Widget {
 
         $instance = wp_parse_args( (array) $instance, $defaults );
 
-        $title         = $instance['title'];
-        $show_releases = $instance['show_releases'];
-        $show_labels   = isset($instance['show_labels']) ? $instance['show_labels'] : '0';
-    ?>
+        $title      = sanitize_text_field( $instance['title'] );
+        $perPage    = (int) sanitize_text_field( $instance['show_releases'] );
+        $showLabels = (int) sanitize_text_field( $instance['show_labels'] );
 
-        <p>
-            <label for="<?php echo $this->get_field_id( 'show_releases' ); ?>">
-                <strong><?php _e( 'Title:', 'wp-upcoming-releases' ); ?></strong>
-            </label>
-            <input type="text"
-                   class="widefat"
-                   name="<?php echo $this->get_field_name( 'title' ); ?>"
-                   id="<?php echo $this->get_field_id( 'show_releases' ); ?>"
-                   value="<?php echo esc_attr( $title ); ?>">
-        </p>
+        $data = array(
+            'title'   => array(
+                'id'    => $this->get_field_id( 'title' ),
+                'name'  => $this->get_field_name( 'title' ),
+                'value' => $title
+            ),
 
-        <p>
-            <label for="<?php echo $this->get_field_id( 'show_releases' ); ?>">
-                <strong><?php _e( 'Number of releases to show:', 'wp-upcoming-releases' ); ?></strong>
-            </label>
-            <input type="text"
-                   size="2"
-                   maxlength="2"
-                   name="<?php echo $this->get_field_name( 'show_releases' ); ?>"
-                   id="<?php echo $this->get_field_id( 'show_releases' ); ?>"
-                   value="<?php echo esc_attr( $show_releases ); ?>">
-        </p>
+            'perPage' => array(
+                'id'    => $this->get_field_id( 'show_releases' ),
+                'name'  => $this->get_field_name( 'show_releases' ),
+                'value' => $perPage
+            ),
 
-        <p>
-            <strong><?php _e( 'Show item labels?', 'wp-upcoming-releases' ); ?></strong> <br>
+            'showLabels' => array(
+                'idNo'  => $this->get_field_id( 'show_labels_no' ),
+                'idYes' => $this->get_field_id( 'show_labels_yes' ),
+                'name'  => $this->get_field_name( 'show_labels' ),
+                'value' => $showLabels
+            )
+        );
 
-            <input type="radio"
-                   name="<?php echo $this->get_field_name( 'show_labels' ); ?>"
-                   id="<?php echo $this->get_field_id( 'show_labels_no' ); ?>"
-                   value="0"
-                   <?php checked( '0', $show_labels ); ?>
-                   data-val="<?php echo $show_labels; ?>">
-            <label for="<?php echo $this->get_field_id( 'show_labels_no' ); ?>">
-                <?php _e( 'No', 'wp-upcoming-releases' ) ?>
-            </label> <br>
-
-            <input type="radio"
-                   name="<?php echo $this->get_field_name( 'show_labels' ); ?>"
-                   id="<?php echo $this->get_field_id( 'show_labels_yes' ); ?>"
-                   value="1"
-                   <?php checked( '1', $show_labels ); ?>
-                   data-val="<?php echo $show_labels; ?>">
-            <label for="<?php echo $this->get_field_id( 'show_labels_yes' ); ?>">
-                <?php _e( 'Yes', 'wp-upcoming-releases' ) ?>
-            </label>
-        </p>
-
-    <?php
+        require WPUR_PATH . 'templates/widget-form.php';
     }
 
     /**
@@ -163,7 +138,7 @@ class has_wpur_widget extends WP_Widget {
 
         echo empty( $arguments['after_widget'] ) ? '' : $arguments['after_widget'];
     }
-} // class has_wpur_widget
+}
 
 // register has_wpur_widget widget.
 function has_wpur_register_widget() {
