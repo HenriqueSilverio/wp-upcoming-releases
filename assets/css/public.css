@@ -1,0 +1,139 @@
+/**
+ * Upcoming Releases
+ *
+ * Public ~ Default widget styles.
+ */
+
+/**
+ * Releases list
+ *
+ * Container for a group of rupcoming eleases items.
+ */
+.has-wpur-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/**
+ * Releases list item
+ *
+ * Represents a individual item on a `.has-wpur-list` group of upcoming releases.
+ *
+ * Overrides default widget styles often applied by some themes.
+ */
+.has-wpur-list__item,
+.widget .has-wpur-list__item,
+.widget .has-wpur-list__item {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+/**
+ * Clearfix
+ *
+ * Clear float on `.has-wpur-thumbnail`.
+ */
+.has-wpur-list__item::before,
+.has-wpur-list__item::after {
+  content: " ";
+  display: table;
+}
+
+.has-wpur-list__item::after {
+  clear: both;
+}
+
+/**
+ * Thumbnail container
+ *
+ * Used to wrap a `.has-wpur__image` featured image.
+ */
+.has-wpur-thumbnail {
+  float: left;
+  margin-right: 20px;
+}
+
+/**
+ * Featured image
+ *
+ * A cover (featured image) to illustrate the upcoming release item.
+ * Usually used within a `.has-wpur-thumbnail`.
+ */
+.has-wpur-thumbnail__image {
+  max-width: 90px;
+  width: 100%;
+  height: auto;
+}
+
+/**
+ * Item details
+ *
+ * Wraps all textual information about a item.
+ */
+.has-wpur-details {}
+
+/**
+ * Text group
+ *
+ * A container to metadata group (`.has-wpur-text` + `.has-wpur-text`) about a item.
+ */
+.has-wpur-text-group {
+  font-family: sans-serif;
+}
+
+/**
+ * Descriptive label
+ *
+ * Gives more context to a `.has-wpur-text` text.
+ */
+.has-wpur-label {
+  color: #636e72;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/**
+ * Plain text
+ *
+ * Information about a item on upcoming releases group.
+ */
+.has-wpur-text  {
+  font-size: 12px;
+}
+
+/**
+ * Item title
+ *
+ * A important text, highlighted.
+ */
+.has-wpur-text--title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/**
+ * Alert
+ *
+ * Base styles to construct alert messages.
+ * Alert messages, are used to provide contextual feedback in UI.
+ */
+.has-wpur-alert {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+/**
+ * Alert warning
+ *
+ * Extends base `.has-wpur-alert` giving it some color.
+ */
+.has-wpur-alert--warning {
+  color: #856404;
+  border-color: #ffeeba;
+  background-color: #fff3cd;
+}
