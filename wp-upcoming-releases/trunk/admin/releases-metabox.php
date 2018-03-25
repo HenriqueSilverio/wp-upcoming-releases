@@ -22,39 +22,9 @@ function has_wpur_metabox_render( $post ) {
     $release_date   = isset( $values['has_wpur_release_date'] )   ? esc_attr( $values['has_wpur_release_date'][0]   ) : '';
 
     wp_nonce_field( 'has_wpur_metabox_nonce', 'has_wpur_nonce' );
-?>
-    <table class="form-table">
-        <tr valign="top">
-            <th scope="row">
-                <label for="has_wpur_classification">
-                    <?php _e( 'Age Rating:', 'wp-upcoming-releases' ); ?>
-                </label>
-            </th>
-            <td>
-                <input type="text"
-                       id="has_wpur_classification"
-                       name="has_wpur_classification"
-                       size="35"
-                       value="<?php echo $classification; ?>">
-            </td>
-        </tr>
 
-        <tr valign="top">
-            <th scope="row">
-                <label for="has_wpur_release_date">
-                    <?php _e( 'Release date:', 'wp-upcoming-releases' ); ?>
-                </label>
-            </th>
-            <td>
-                <input type="text"
-                       id="has_wpur_release_date"
-                       name="has_wpur_release_date"
-                       size="35"
-                       value="<?php echo $release_date; ?>">
-            </td>
-        </tr>
-    </table>
-<?php }
+    require_once WPUR_PATH . '/templates/metabox-form.php';
+}
 
 /**
  * Save
