@@ -13,5 +13,8 @@ trim_trailing_whitespace = true
 [*.php]
 indent_size = 4
 
+[wp-upcoming-releases/trunk/templates/**.php]
+indent_size = 2
+
 [*.{md,txt}]
 trim_trailing_whitespace = false

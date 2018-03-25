@@ -5,8 +5,8 @@ Requires at least: 3.8
 Tested up to: 4.9.4
 Requires PHP: 5.6
 Stable tag: 1.2.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 Donate link: https://pag.ae/bhdkncn
 
 Show a list of upcoming releases: movies, games, events or any other thing your needs. Easy management with post type and categories.

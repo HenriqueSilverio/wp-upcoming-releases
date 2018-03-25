@@ -6,6 +6,10 @@ All notable changes to [WP Upcoming Releases](https://wordpress.org/plugins/wp-u
 
 - Adopt OOP, and modern PHP into all code base.
 
+## v1.3.0 - 2018-03-25
+
+- Dropped all blank `index.php` files.
+
 ## v1.2.0 - 2018-02-23
 
 - Proper use of hooks to all plugin functions.

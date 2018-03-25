@@ -60,26 +60,26 @@ This section describes how to install the plugin and get it working.
 
 ### What is the plugin license?
 
-This plugin is released under GPLv2 (or later) license.
+This plugin is released under GPLv3 (or later) license.
 
 ## Screenshots
 
 ### 1. Front-End display of Upcoming Releases
 
-![1. Front-End display of Upcoming Releases](screenshots/screenshot-1.png)
+![1. Front-End display of Upcoming Releases](wp-upcoming-releases/assets/screenshot-1.png)
 
 ### 2. Front-End display "not found" message
 
-![2. Front-End display "not found" message](screenshots/screenshot-2.png)
+![2. Front-End display "not found" message](wp-upcoming-releases/assets/screenshot-2.png)
 
 ### 3. Back-End widget configurations
 
-![3. Back-End widget configurations](screenshots/screenshot-3.png)
+![3. Back-End widget configurations](wp-upcoming-releases/assets/screenshot-3.png)
 
 ### 4. Back-End listing recorded items
 
-![4. Back-End listing recorded items](screenshots/screenshot-4.png)
+![4. Back-End listing recorded items](wp-upcoming-releases/assets/screenshot-4.png)
 
 ### 5. Back-End editing a item
 
-![5. Back-End editing a item](screenshots/screenshot-5.png)
+![5. Back-End editing a item](wp-upcoming-releases/assets/screenshot-5.png)

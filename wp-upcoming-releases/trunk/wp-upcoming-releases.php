@@ -4,19 +4,19 @@
  * Plugin URI:  https://github.com/HenriqueSilverio/wp-upcoming-releases
  * Description: Widget to show a list of upcoming releases: movies, games, musics, or any other thing your creative ideas needs. Easy management with custom post types and categories.
  * Version:     1.2.0
- * Author:      Henrique Antonini Silvério
- * Author URI:  https://henriquesilverio.github.io
- * License:     GPLv2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Author:      Henrique Silvério
+ * Author URI:  https://henriquesilverio.com.br
+ * License:     GPL-3.0+
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: wp-upcoming-releases
- * Domain Path: /languages
+ * Domain Path: languages
  *
- * Copyright (C) 2014 ~ 2018 Henrique Antonini Silvério
+ * Copyright (C) 2014 ~ 2018 Henrique Silvério
  *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -24,8 +24,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 // If this file is called directly, abort.

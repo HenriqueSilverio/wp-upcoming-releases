@@ -36,9 +36,9 @@ class has_wpur_widget extends WP_Widget {
 
         $instance = wp_parse_args( (array) $instance, $defaults );
 
-        $title      = sanitize_text_field( $instance['title'] );
-        $perPage    = (int) sanitize_text_field( $instance['show_releases'] );
-        $showLabels = (int) sanitize_text_field( $instance['show_labels'] );
+        $title      = isset($instance['title']) ? sanitize_text_field( $instance['title'] ) : '';
+        $perPage    = isset($instance['show_releases']) ? (int) sanitize_text_field( $instance['show_releases'] ) : 4;
+        $showLabels = isset($instance['show_labels']) ? (int) sanitize_text_field( $instance['show_labels'] ) : 0;
 
         $data = array(
             'title'   => array(
