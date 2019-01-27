@@ -2,7 +2,7 @@
 Contributors: henriquesilverio
 Tags: upcoming releases, coming soon, movies, events, games, widget, custom post type
 Requires at least: 3.8
-Tested up to: 4.9.4
+Tested up to: 5.0.3
 Requires PHP: 5.6
 Stable tag: 1.2.0
 License: GPLv2 or later
